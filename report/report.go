@@ -2,6 +2,7 @@ package report
 
 import (
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -24,6 +25,7 @@ type Response struct {
 func Create(c echo.Context) error {
 	req := &Request{}
 	err := c.Bind(req)
+	log.Printf("%+v\n", req)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, Response{
 			Message: err.Error(),
